@@ -2,17 +2,11 @@ import os
 from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 project_folder = os.path.expanduser(BASE_DIR)
-print(project_folder)
-
 load_dotenv(os.path.join(project_folder, '.env'))
-
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -21,6 +15,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'accounts',
+    'jobs'
 ]
 
 MIDDLEWARE = [
@@ -52,6 +49,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'jobportal.wsgi.application'
+AUTH_USER_MODEL = 'accounts.EmailUser'
 
 DATABASES = {
     'default': {
@@ -87,3 +85,7 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIAL_ROOT = os.path.join(BASE_DIR, 'media')
